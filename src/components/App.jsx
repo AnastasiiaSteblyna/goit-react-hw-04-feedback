@@ -10,10 +10,12 @@ export default function App() {
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
 
+  console.log(good);
   const onLeaveFeedback = e => {
     switch (e.target.name) {
       case 'good':
-        setGood(good + 1);
+        setGood(prevState => prevState + 1);
+
         break;
       case 'neutral':
         setNeutral(neutral + 1);
