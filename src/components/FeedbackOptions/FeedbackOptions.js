@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import css from '../../styles/Common.module.css';
 
-const FeedbackOptions = ({ good, neutral, bad, onLeaveFeedback }) => {
+const FeedbackOptions = ({ onLeaveFeedback }) => {
   return (
     <div>
       <button
-        className={css.button}
+        className={css.btn}
         type="button"
         name="good"
         onClick={onLeaveFeedback}
@@ -14,7 +14,7 @@ const FeedbackOptions = ({ good, neutral, bad, onLeaveFeedback }) => {
         Good
       </button>
       <button
-        className={css.button}
+        className={css.btn}
         type="button"
         name="neutral"
         onClick={onLeaveFeedback}
@@ -22,7 +22,7 @@ const FeedbackOptions = ({ good, neutral, bad, onLeaveFeedback }) => {
         Neutral
       </button>
       <button
-        className={css.button}
+        className={css.btn}
         type="button"
         name="bad"
         onClick={onLeaveFeedback}
@@ -34,9 +34,6 @@ const FeedbackOptions = ({ good, neutral, bad, onLeaveFeedback }) => {
 };
 
 FeedbackOptions.propTypes = {
-  good: PropTypes.number.isRequired,
-  neutral: PropTypes.number.isRequired,
-  bad: PropTypes.number.isRequired,
   onLeaveFeedback: PropTypes.func.isRequired,
 };
 

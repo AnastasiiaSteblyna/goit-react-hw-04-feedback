@@ -10,7 +10,6 @@ export default function App() {
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
 
-  console.log(good);
   const onLeaveFeedback = e => {
     switch (e.target.name) {
       case 'good':
@@ -43,31 +42,24 @@ export default function App() {
   };
 
   return (
-    <>
-      <div className={css.container}>
-        <Section title="Please leave feedback">
-          <FeedbackOptions
+    <div className={css.container}>
+      <Section title="Please leave feedback">
+        <FeedbackOptions onLeaveFeedback={onLeaveFeedback} />
+      </Section>
+
+      <Section title="Statictics">
+        {countTotalFeedback() === 0 ? (
+          <Notification message="Here is no feedback" />
+        ) : (
+          <Statistics
             good={good}
             neutral={neutral}
             bad={bad}
-            onLeaveFeedback={onLeaveFeedback}
+            total={countTotalFeedback()}
+            positivePercentage={countPositiveFeedbackPercentage()}
           />
-        </Section>
-
-        <Section title="Statictics">
-          {countTotalFeedback() === 0 ? (
-            <Notification message="There is no feedback" />
-          ) : (
-            <Statistics
-              good={good}
-              neutral={neutral}
-              bad={bad}
-              total={countTotalFeedback()}
-              positivePercentage={countPositiveFeedbackPercentage()}
-            />
-          )}
-        </Section>
-      </div>
-    </>
+        )}
+      </Section>
+    </div>
   );
 }
