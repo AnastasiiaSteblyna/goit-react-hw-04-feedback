@@ -14,26 +14,21 @@ export default function App() {
     switch (e.target.name) {
       case 'good':
         setGood(prevState => prevState + 1);
-
         break;
       case 'neutral':
-        setNeutral(neutral + 1);
+        setNeutral(prevState => prevState + 1);
         break;
       case 'bad':
-        setBad(bad + 1);
+        setBad(prevState => prevState + 1);
         break;
       default:
         break;
     }
   };
 
-  const countTotalFeedback = () => {
-    const totalFeedback = good + neutral + bad;
-    return totalFeedback;
-  };
+  const totalFeedback = good + neutral + bad;
 
   const countPositiveFeedbackPercentage = () => {
-    const totalFeedback = good + neutral + bad;
     if (totalFeedback !== 0) {
       return Math.round((good / totalFeedback) * 100);
     } else {
@@ -48,14 +43,14 @@ export default function App() {
       </Section>
 
       <Section title="Statictics">
-        {countTotalFeedback() === 0 ? (
+        {totalFeedback === 0 ? (
           <Notification message="Here is no feedback" />
         ) : (
           <Statistics
             good={good}
             neutral={neutral}
             bad={bad}
-            total={countTotalFeedback()}
+            total={totalFeedback}
             positivePercentage={countPositiveFeedbackPercentage()}
           />
         )}
